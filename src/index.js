@@ -19,7 +19,7 @@ function generateStory(event) {
 
   let storyElement = document.querySelector("#story");
   storyElement.classList.remove("hidden");
-  storyElement.innerHTML = `<div class="⌛ generating">Generating a story about ${instructionsInput.value}</div>`;
+  storyElement.innerHTML = `<div class="generating">⌛ Generating a story about ${instructionsInput.value}</div>`;
 
   axios.get(apiUrl).then(displayStory);
 }
