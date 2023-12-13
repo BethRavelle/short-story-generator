@@ -1,12 +1,28 @@
-function generateStory(event) {
-  event.preventDefault();
-
+function displayStory(response) {
+  console.log("story generated");
   new Typewriter("#story", {
-    strings: ["story story story"],
+    strings: response.data.answer,
     autoStart: true,
     delay: 1,
     cursor: "",
   });
+}
+
+function generateStory(event) {
+  event.preventDefault();
+
+  let instructionsInput = document.querySelector("#user-instructions");
+  let apiKey = "dt38edb4400a7f2a527f57bfe46o7a34";
+  let prompt = `User instructions: Generate a story about ${instructionsInput.value}`;
+  let context =
+    "You are an expert at writing short cute silly stories for children. Your mission to generate an 8 line story in basic HTML. Make sure to follow the user instructions. Sign the story 'SheCodes AI' inside a <strong> element at the end of the story";
+  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+
+  console.log("Generating story");
+  console.log(`Prompt: ${prompt}`);
+  console.log(`Context: ${context}`);
+
+  axios.get(apiUrl).then(displayStory);
 }
 
 let storyFormElement = document.querySelector("#story-generator-form");
