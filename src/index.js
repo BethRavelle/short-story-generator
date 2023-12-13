@@ -18,6 +18,10 @@ function generateStory(event) {
     "You are an expert at writing short cute silly stories for children. Your mission to generate an 8 line story in basic HTML. Make sure to follow the user instructions. Sign the story 'SheCodes AI' inside a <strong> element at the end of the story";
   let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
 
+  let storyElement = document.querySelector("#story");
+  storyElement.classList.remove("hidden");
+  storyElement.innerHTML = `<div class="⌛ generating">Generating a story about ${instructionsInput.value}</div>`;
+
   console.log("Generating story");
   console.log(`Prompt: ${prompt}`);
   console.log(`Context: ${context}`);
