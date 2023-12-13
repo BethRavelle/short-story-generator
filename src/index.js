@@ -1,5 +1,4 @@
 function displayStory(response) {
-  console.log("story generated");
   new Typewriter("#story", {
     strings: response.data.answer,
     autoStart: true,
@@ -21,10 +20,6 @@ function generateStory(event) {
   let storyElement = document.querySelector("#story");
   storyElement.classList.remove("hidden");
   storyElement.innerHTML = `<div class="⌛ generating">Generating a story about ${instructionsInput.value}</div>`;
-
-  console.log("Generating story");
-  console.log(`Prompt: ${prompt}`);
-  console.log(`Context: ${context}`);
 
   axios.get(apiUrl).then(displayStory);
 }
